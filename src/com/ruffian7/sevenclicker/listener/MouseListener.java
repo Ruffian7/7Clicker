@@ -28,16 +28,14 @@ public class MouseListener implements NativeMouseListener {
 				AutoClicker.blockHit = true;
 			}
 
-			if (event.getButton() == MouseEvent.BUTTON1
-					&& !(System.getProperty("os.name").toLowerCase().contains("mac") && event.getModifiers() == 258)) {
+			if (event.getButton() == AutoClicker.button) {
 				AutoClicker.mousePos = event.getPoint();
 				AutoClicker.activated = true;
 				AutoClicker.lastTime = System.currentTimeMillis();
 			}
 		}
 
-		if (event.getButton() == MouseEvent.BUTTON1
-				&& !(System.getProperty("os.name").toLowerCase().contains("mac") && event.getModifiers() == 258)) {
+		if (event.getButton() == AutoClicker.button) {
 			if (System.currentTimeMillis() - lastClickTime > 1000 && lastClickTime != 0) {
 				lastClickTime = 0;
 			}
@@ -55,15 +53,15 @@ public class MouseListener implements NativeMouseListener {
 	@Override
 	public void nativeMouseReleased(NativeMouseEvent event) {
 		if (!AutoClicker.skipNext) {
-			if (event.getButton() == MouseEvent.BUTTON1) {
+			if (event.getButton() == AutoClicker.button) {
 				leftClick = false;
 				AutoClicker.activated = false;
-			} else if (event.getButton() == MouseEvent.BUTTON2) {
+			} else if (event.getButton() == ((AutoClicker.button == 1) ? 2 : 1)) {
 				rightClick = false;
 				AutoClicker.blockHit = false;
 			}
 		} else {
-			AutoClicker.skipNext = event.getButton() == MouseEvent.BUTTON1 && AutoClicker.blockHit;
+			AutoClicker.skipNext = event.getButton() == AutoClicker.button && AutoClicker.blockHit;
 		}
 	}
 

@@ -71,6 +71,7 @@ public class ClickerGui {
 	public JTextField toggleKeyField = new JTextField("Mouse 3");
 
 	public JCheckBox overlayBox = new JCheckBox("Overlay", true);
+	public JCheckBox rightClickBox = new JCheckBox("Right Click", false);
 
 	public RangeSlider slider = new RangeSlider(mainPane, 10, 130);
 
@@ -230,7 +231,7 @@ public class ClickerGui {
 		cpsRange.setForeground(Color.WHITE);
 		mainPane.add(cpsRange);
 
-		minCPSField.setBounds(10, 141, 20, 20);
+		minCPSField.setBounds(10, 140, 20, 20);
 		minCPSField.setHorizontalAlignment(SwingConstants.CENTER);
 		minCPSField.setBackground(DARK_GRAY);
 		minCPSField.setForeground(Color.WHITE);
@@ -252,7 +253,7 @@ public class ClickerGui {
 
 		mainPane.add(minCPSField);
 
-		maxCPSField.setBounds(WINDOW_WIDTH - 30, 141, 20, 20);
+		maxCPSField.setBounds(WINDOW_WIDTH - 30, 140, 20, 20);
 		maxCPSField.setHorizontalAlignment(SwingConstants.CENTER);
 		maxCPSField.setBackground(DARK_GRAY);
 		maxCPSField.setForeground(Color.WHITE);
@@ -274,7 +275,7 @@ public class ClickerGui {
 
 		mainPane.add(maxCPSField);
 
-		overlayBox.setBounds(41, 160, 67, 16);
+		overlayBox.setBounds(5, 163, 67, 16);
 		overlayBox.setBackground(LIGHT_GRAY);
 		overlayBox.setForeground(Color.WHITE);
 		overlayBox.setIcon(
@@ -290,6 +291,23 @@ public class ClickerGui {
 		});
 
 		mainPane.add(overlayBox);
+
+		rightClickBox.setBounds(66, 163, 80, 16);
+		rightClickBox.setBackground(LIGHT_GRAY);
+		rightClickBox.setForeground(Color.WHITE);
+		rightClickBox.setIcon(
+				new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/checkbox_unchecked.png")));
+		rightClickBox.setSelectedIcon(
+				new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/checkbox_checked.png")));
+
+		rightClickBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AutoClicker.button = (rightClickBox.isSelected()) ? 2 : 1;
+			}
+		});
+
+		mainPane.add(rightClickBox);
 
 		toggleKeyText.setBounds(11, 180, 66, 25);
 		toggleKeyText.setForeground(Color.WHITE);
@@ -372,6 +390,7 @@ public class ClickerGui {
 			cpsNumber.setFont(font.deriveFont(Font.PLAIN, 69));
 			cpsRange.setFont(font.deriveFont(Font.PLAIN, 18));
 			overlayBox.setFont(font.deriveFont(Font.PLAIN, 14));
+			rightClickBox.setFont(font.deriveFont(Font.PLAIN, 14));
 			toggleKeyText.setFont(font.deriveFont(Font.PLAIN, 14));
 			minCPSField.setFont(new Font("arial", Font.PLAIN, 12));
 			maxCPSField.setFont(new Font("arial", Font.PLAIN, 12));

@@ -3,7 +3,6 @@ package com.ruffian7.sevenclicker;
 import java.awt.AWTException;
 import java.awt.Point;
 import java.awt.Robot;
-import java.awt.event.MouseEvent;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -33,6 +32,7 @@ public class AutoClicker {
 	public static long lastTime = 0;
 	public static int minCPS = 8;
 	public static int maxCPS = 12;
+	public static int button = 1;
 
 	public static String[] toggleKey = { "", "" };
 	public static int toggleMouseButton = 3;
@@ -72,12 +72,12 @@ public class AutoClicker {
 
 	private static void click() {
 		skipNext = true;
-		robot.mousePress(MouseEvent.BUTTON1_MASK);
-		robot.mouseRelease(MouseEvent.BUTTON1_MASK);
+		robot.mousePress((button == 1) ? 16 : 4);
+		robot.mouseRelease((button == 1) ? 16 : 4);
 
 		if (blockHit) {
-			robot.mousePress(MouseEvent.BUTTON3_MASK);
-			robot.mouseRelease(MouseEvent.BUTTON3_MASK);
+			robot.mousePress((button == 1) ? 4 : 16);
+			robot.mouseRelease((button == 1) ? 4 : 16);
 		}
 	}
 
