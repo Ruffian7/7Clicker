@@ -19,13 +19,17 @@ public class RangeSlider extends JPanel {
 	public int sliderVal1 = 7;
 	public int sliderVal2 = 11;
 
-	Rectangle2D.Double sliderBody = new Rectangle2D.Double(0, 2.5, 130, 5);
-	Ellipse2D.Double sliderThumb1 = new Ellipse2D.Double((sliderVal1 / 20.0f) * 130, 0, 10, 10);
-	Ellipse2D.Double sliderThumb2 = new Ellipse2D.Double((sliderVal2 / 20.0f) * 130, 0, 10, 10);
-	Rectangle2D.Double sliderRange = new Rectangle2D.Double((sliderVal1 / 20.0f) * 130 + 5, 3,
-			((sliderVal2 - sliderVal1) / 20.0f) * 130, 4);
+	Rectangle2D.Double sliderBody = null;
+	Ellipse2D.Double sliderThumb1 = null;
+	Ellipse2D.Double sliderThumb2 = null;
+	Rectangle2D.Double sliderRange = null;
 
 	public RangeSlider(JPanel panel, int x, int y) {
+		sliderBody = new Rectangle2D.Double(0, 2.5, 130, 5);
+		sliderThumb1 = new Ellipse2D.Double((sliderVal1 / 20.0f) * 130, 0, 10, 10);
+		sliderThumb2 = new Ellipse2D.Double((sliderVal2 / 20.0f) * 130, 0, 10, 10);
+		sliderRange = new Rectangle2D.Double((sliderVal1 / 20.0f) * 130 + 5, 3, ((sliderVal2 - sliderVal1) / 20.0f) * 130, 4);
+		
 		setLayout(null);
 		setBounds(x, y, 130, 10);
 		setBackground(new Color(60, 70, 73));
