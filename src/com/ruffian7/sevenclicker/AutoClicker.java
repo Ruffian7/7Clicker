@@ -21,7 +21,7 @@ public class AutoClicker {
 
 	public static Robot robot;
 	public static Point mousePos;
-	public static ClickerGui gui = new ClickerGui();
+	public static ClickerGui gui = null;
 
 	public static boolean toggled = false;
 	public static boolean activated = false;
@@ -38,6 +38,7 @@ public class AutoClicker {
 	public static int toggleMouseButton = 3;
 
 	public static void main(String[] args) {
+		gui  = new ClickerGui();
 		LogManager.getLogManager().reset();
 		Logger.getLogger(GlobalScreen.class.getPackage().getName()).setLevel(Level.OFF);
 
@@ -50,13 +51,11 @@ public class AutoClicker {
 			e.printStackTrace();
 		}
 
-		try {
-			while (true) {
-				Thread.sleep(1);
-				Random random = new Random();
-				if (delay == -1)
-					delay = random.nextInt((1000 / minCPS) - (1000 / maxCPS) + 1) + (1000 / maxCPS);
-
+		Random random = new Random();
+		delay = random.nextInt((1000 / minCPS) - (1000 / maxCPS) + 1) + (1000 / maxCPS);
+		
+		while (true) {
+			try {
 				if (activated && toggled && !gui.focused) {
 					if (System.currentTimeMillis() - lastTime >= delay) {
 						click();
@@ -64,9 +63,9 @@ public class AutoClicker {
 						delay = random.nextInt((1000 / minCPS) - (1000 / maxCPS) + 1) + (1000 / maxCPS);
 					}
 				}
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
-		} catch (InterruptedException e) {
-			e.printStackTrace();
 		}
 	}
 
@@ -82,15 +81,10 @@ public class AutoClicker {
 	}
 
 	public static void toggle() {
-		if (AutoClicker.toggled) {
-			AutoClicker.toggled = false;
-			AutoClicker.gui.powerButton
-					.setIcon(new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/power_button.png")));
-		} else {
-			AutoClicker.toggled = true;
-			AutoClicker.gui.powerButton.setIcon(
-					new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/power_button_on.png")));
-		}
+		AutoClicker.toggled = !AutoClicker.toggled;
+		String file = AutoClicker.toggled ? "assets/power_button.png" : "assets/power_button_on.png";
+		AutoClicker.gui.powerButton
+					.setIcon(new ImageIcon(AutoClicker.class.getClassLoader().getResource(file)));
 
 		AutoClicker.activated = false;
 		AutoClicker.skipNext = false;
