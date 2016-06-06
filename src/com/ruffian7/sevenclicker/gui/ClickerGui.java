@@ -47,7 +47,7 @@ public class ClickerGui {
 	private final int WINDOW_HEIGHT = 125;
 	private final int DROPDOWN_HEIGHT = 100;
 
-	private final Color LIGHT_GRAY = new Color(60, 70, 73);
+	private final Color LIGHT_GRAY = null;
 	private final Color DARK_GRAY = new Color(45, 47, 49);
 	private final Color GREEN = new Color(35, 168, 105);
 
@@ -78,6 +78,8 @@ public class ClickerGui {
 	public boolean focused = false;
 
 	public ClickerGui() {
+		LIGHT_GRAY = new Color(60, 70, 73);
+		
 		setupFrame();
 		setupMainPane();
 		setupTitleBar();
