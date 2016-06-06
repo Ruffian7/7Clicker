@@ -15,7 +15,7 @@ public class KeyListener implements NativeKeyListener {
 		List<String> modifiers1 = Arrays.asList(NativeKeyEvent.getModifiersText(event.getModifiers()).split("\\+"));
 		List<String> modifiers2 = Arrays.asList(AutoClicker.toggleKey[1].split("\\+"));
 
-		if (NativeKeyEvent.getKeyText(event.getKeyCode()).equals(AutoClicker.toggleKey[0])
+		if (NativeKeyEvent.getKeyText(event.getKeyCode()) == AutoClicker.toggleKey[0]
 				&& modifiers1.containsAll(modifiers2) && !AutoClicker.gui.focused) {
 			AutoClicker.toggle();
 		}
