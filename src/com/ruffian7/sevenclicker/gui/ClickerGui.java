@@ -1,4 +1,4 @@
-package com.ruffian7.sevenclicker.gui;
+package com.ruffian7.sevenclikcer.gui;
 
 import java.awt.AWTEvent;
 import java.awt.Color;
@@ -39,9 +39,9 @@ import javax.swing.text.DocumentFilter;
 import org.pushingpixels.trident.Timeline;
 
 import com.apple.eawt.Application;
-import com.ruffian7.sevenclicker.AutoClicker;
+import com.ruffian7.sevenclicker.AutoClikcer;
 
-public class ClickerGui {
+public class ClikcerGui {
 
 	private final int WINDOW_WIDTH = 150;
 	private final int WINDOW_HEIGHT = 125;
@@ -61,9 +61,9 @@ public class ClickerGui {
 	public JLabel cpsRange = new JLabel("CPS Range");
 	public JLabel cpsNumber = new JLabel("00");
 	public JLabel dropdownArrow = new JLabel(
-			new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/arrow_down.png")));
+			new ImageIcon(AutoClikcer.class.getClassLoader().getResource("assets/arrow_down.png")));
 	public JLabel powerButton = new JLabel(
-			new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/power_button.png")));
+			new ImageIcon(AutoClikcer.class.getClassLoader().getResource("assets/power_button.png")));
 	public JLabel toggleKeyText = new JLabel("Toggle Button");
 
 	public JTextField minCPSField = new JTextField("8", 2);
@@ -77,7 +77,7 @@ public class ClickerGui {
 
 	public boolean focused = false;
 
-	public ClickerGui() {
+	public ClikcerGui() {
 		setupFrame();
 		setupMainPane();
 		setupTitleBar();
@@ -98,10 +98,10 @@ public class ClickerGui {
 
 		if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 			Application.getApplication().setDockIconImage(
-					new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/7Clicker.png")).getImage());
+					new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/7Clikcer.png")).getImage());
 		} else {
 			frame.setIconImage(
-					new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/7Clicker.png")).getImage());
+					new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/7Clikcer.png")).getImage());
 		}
 
 		frame.addWindowFocusListener(new WindowAdapter() {
@@ -139,7 +139,7 @@ public class ClickerGui {
 		powerButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				AutoClicker.toggle();
+				AutoClikcer.toggle();
 			}
 		});
 
@@ -279,9 +279,9 @@ public class ClickerGui {
 		overlayBox.setBackground(LIGHT_GRAY);
 		overlayBox.setForeground(Color.WHITE);
 		overlayBox.setIcon(
-				new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/checkbox_unchecked.png")));
+				new ImageIcon(AutoClikcer.class.getClassLoader().getResource("assets/checkbox_unchecked.png")));
 		overlayBox.setSelectedIcon(
-				new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/checkbox_checked.png")));
+				new ImageIcon(AutoClikcer.class.getClassLoader().getResource("assets/checkbox_checked.png")));
 
 		overlayBox.addActionListener(new ActionListener() {
 			@Override
@@ -303,7 +303,7 @@ public class ClickerGui {
 		rightClickBox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AutoClicker.button = (rightClickBox.isSelected()) ? 2 : 1;
+				AutoClikcer.button = (rightClickBox.isSelected()) ? 2 : 1;
 			}
 		});
 
@@ -346,9 +346,9 @@ public class ClickerGui {
 				try {
 					if (!KeyEvent.getKeyModifiersText(e.getModifiers()).contains(KeyEvent.getKeyText(e.getKeyCode()))
 							&& e.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
-						AutoClicker.toggleKey[0] = KeyEvent.getKeyText(e.getKeyCode());
-						AutoClicker.toggleKey[1] = KeyEvent.getKeyModifiersText(e.getModifiers());
-						AutoClicker.toggleMouseButton = -1;
+						AutoClikcer.toggleKey[0] = KeyEvent.getKeyText(e.getKeyCode());
+						AutoClikcer.toggleKey[1] = KeyEvent.getKeyModifiersText(e.getModifiers());
+						AutoClikcer.toggleMouseButton = -1;
 						((AbstractDocument) toggleKeyField.getDocument()).replace(-1, -1,
 								getKeyString(e.getKeyCode(), e.getModifiers()), null);
 					}
@@ -363,9 +363,9 @@ public class ClickerGui {
 			public void mousePressed(MouseEvent e) {
 				try {
 					if (e.getButton() == 2 || e.getButton() > 3) {
-						AutoClicker.toggleMouseButton = (e.getButton() == 2) ? 3 : e.getButton();
-						AutoClicker.toggleKey[0] = "";
-						AutoClicker.toggleKey[1] = "";
+						AutoClikcer.toggleMouseButton = (e.getButton() == 2) ? 3 : e.getButton();
+						AutoClikcer.toggleKey[0] = "";
+						AutoClikcer.toggleKey[1] = "";
 						((AbstractDocument) toggleKeyField.getDocument()).replace(-1, -1,
 								"Mouse " + ((e.getButton() == 2) ? 3 : e.getButton()), null);
 					}
@@ -431,14 +431,14 @@ public class ClickerGui {
 			KeyboardFocusManager.getCurrentKeyboardFocusManager().clearGlobalFocusOwner();
 
 			if (isMin) {
-				AutoClicker.minCPS = cpsFieldVal;
+				AutoClikcer.minCPS = cpsFieldVal;
 			} else {
-				AutoClicker.maxCPS = cpsFieldVal;
+				AutoClikcer.maxCPS = cpsFieldVal;
 			}
 
 			slider.repaint();
 		} else {
-			textField.setText(String.valueOf(isMin ? AutoClicker.minCPS : AutoClicker.maxCPS));
+			textField.setText(String.valueOf(isMin ? AutoClikcer.minCPS : AutoClikcer.maxCPS));
 		}
 	}
 
