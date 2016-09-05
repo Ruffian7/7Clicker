@@ -1,4 +1,4 @@
-package com.ruffian7.sevenclicker.gui;
+package com.ruffian7.sevenclikcer.gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -11,7 +11,7 @@ import java.awt.geom.Rectangle2D;
 
 import javax.swing.JPanel;
 
-import com.ruffian7.sevenclicker.AutoClicker;
+import com.ruffian7.sevenclikcer.AutoClikcer;
 
 public class RangeSlider extends JPanel {
 
@@ -57,10 +57,10 @@ public class RangeSlider extends JPanel {
 					sliderRange.width = Math.max(sliderThumb1.x, sliderThumb2.x)
 							- Math.min(sliderThumb1.x, sliderThumb2.x);
 					sliderVal1 = (int) Math.round(((sliderThumb1.x + 2) / 130) * 20);
-					AutoClicker.minCPS = Math.min(sliderVal1, sliderVal2) + 1;
-					AutoClicker.maxCPS = Math.max(sliderVal1, sliderVal2) + 1;
-					AutoClicker.gui.minCPSField.setText(String.valueOf(AutoClicker.minCPS));
-					AutoClicker.gui.maxCPSField.setText(String.valueOf(AutoClicker.maxCPS));
+					AutoClikcer.minCPS = Math.min(sliderVal1, sliderVal2) + 1;
+					AutoClikcer.maxCPS = Math.max(sliderVal1, sliderVal2) + 1;
+					AutoClikcer.gui.minCPSField.setText(String.valueOf(AutoClikcer.minCPS));
+					AutoClikcer.gui.maxCPSField.setText(String.valueOf(AutoClikcer.maxCPS));
 					repaint();
 				} else if (thumbPressed2) {
 					sliderThumb2.x = (e.getX() - 5 < -5) ? -5 : (e.getX() - 5 > 124) ? 124 : e.getX() - 5;
@@ -68,10 +68,10 @@ public class RangeSlider extends JPanel {
 					sliderRange.width = Math.max(sliderThumb1.x, sliderThumb2.x)
 							- Math.min(sliderThumb1.x, sliderThumb2.x);
 					sliderVal2 = (int) Math.round(((sliderThumb2.x + 2) / 130) * 20);
-					AutoClicker.minCPS = Math.min(sliderVal1, sliderVal2) + 1;
-					AutoClicker.maxCPS = Math.max(sliderVal1, sliderVal2) + 1;
-					AutoClicker.gui.minCPSField.setText(String.valueOf(AutoClicker.minCPS));
-					AutoClicker.gui.maxCPSField.setText(String.valueOf(AutoClicker.maxCPS));
+					AutoClikcer.minCPS = Math.min(sliderVal1, sliderVal2) + 1;
+					AutoClikcer.maxCPS = Math.max(sliderVal1, sliderVal2) + 1;
+					AutoClikcer.gui.minCPSField.setText(String.valueOf(AutoClikcer.minCPS));
+					AutoClikcer.gui.maxCPSField.setText(String.valueOf(AutoClikcer.maxCPS));
 					repaint();
 				}
 			}
