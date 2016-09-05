@@ -1,4 +1,4 @@
-package com.ruffian7.sevenclicker;
+package com.ruffian7.sevenclikcer;
 
 import java.awt.AWTException;
 import java.awt.Point;
@@ -13,15 +13,15 @@ import javax.swing.ImageIcon;
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 
-import com.ruffian7.sevenclicker.gui.ClickerGui;
-import com.ruffian7.sevenclicker.listener.KeyListener;
-import com.ruffian7.sevenclicker.listener.MouseListener;
+import com.ruffian7.sevenclikcer.gui.ClickerGui;
+import com.ruffian7.sevenclikcer.listener.KeyListener;
+import com.ruffian7.sevenclikcer.listener.MouseListener;
 
-public class AutoClicker {
+public class AutoClikcer {
 
 	public static Robot robot;
 	public static Point mousePos;
-	public static ClickerGui gui = new ClickerGui();
+	public static ClikcerGui gui = new ClikcerGui();
 
 	public static boolean toggled = false;
 	public static boolean activated = false;
@@ -30,8 +30,8 @@ public class AutoClicker {
 
 	private static int delay = -1;
 	public static long lastTime = 0;
-	public static int minCPS = 8;
-	public static int maxCPS = 12;
+	public static int minCPS = 7;
+	public static int maxCPS = 10;
 	public static int button = 1;
 
 	public static String[] toggleKey = { "", "" };
@@ -82,18 +82,18 @@ public class AutoClicker {
 	}
 
 	public static void toggle() {
-		if (AutoClicker.toggled) {
-			AutoClicker.toggled = false;
-			AutoClicker.gui.powerButton
-					.setIcon(new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/power_button.png")));
+		if (AutoClikcer.toggled) {
+			AutoClikcer.toggled = false;
+			AutoClikcer.gui.powerButton
+					.setIcon(new ImageIcon(AutoClikcer.class.getClassLoader().getResource("assets/power_button.png")));
 		} else {
-			AutoClicker.toggled = true;
-			AutoClicker.gui.powerButton.setIcon(
-					new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/power_button_on.png")));
+			AutoClikcer.toggled = true;
+			AutoClikcer.gui.powerButton.setIcon(
+					new ImageIcon(AutoClikcer.class.getClassLoader().getResource("assets/power_button_on.png")));
 		}
 
-		AutoClicker.activated = false;
-		AutoClicker.skipNext = false;
-		AutoClicker.blockHit = false;
+		AutoClikcer.activated = false;
+		AutoClikcer.skipNext = false;
+		AutoClikcer.blockHit = false;
 	}
 }
