@@ -47,9 +47,9 @@ public class ClickerGui {
 	private final int WINDOW_HEIGHT = 125;
 	private final int DROPDOWN_HEIGHT = 100;
 
-	private final Color LIGHT_GRAY = new Color(60, 70, 73);
+	private final Color DARK_BLUE = new Color(60, 70, 73);
 	private final Color DARK_GRAY = new Color(45, 47, 49);
-	private final Color GREEN = new Color(35, 168, 105);
+	private final Color BLUE = new Color(35, 168, 105);
 
 	public JFrame frame = new JFrame("7Clicker");
 
@@ -57,23 +57,23 @@ public class ClickerGui {
 	public JPanel titleBar = new JPanel(null);
 	public JPanel dropdown = new JPanel(null);
 
-	public JLabel titleText = new JLabel("7Clicker");
-	public JLabel cpsRange = new JLabel("CPS Range");
+	public JLabel titleText = new JLabel("Bandigatyamba");
+	public JLabel cpsRange = new JLabel("CPS SZAM");
 	public JLabel cpsNumber = new JLabel("00");
 	public JLabel dropdownArrow = new JLabel(
 			new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/arrow_down.png")));
 	public JLabel powerButton = new JLabel(
-			new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/power_button.png")));
-	public JLabel toggleKeyText = new JLabel("Toggle Button");
+			new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/power.png")));
+	public JLabel toggleKeyText = new JLabel("On");
 
-	public JTextField minCPSField = new JTextField("8", 2);
-	public JTextField maxCPSField = new JTextField("12", 2);
-	public JTextField toggleKeyField = new JTextField("Mouse 3");
+	public JTextField minCPSField = new JTextField("23", 3);
+	public JTextField maxCPSField = new JTextField("25", 3);
+	public JTextField toggleKeyField = new JTextField("Mouse 2");
 
 	public JCheckBox overlayBox = new JCheckBox("Overlay", true);
 	public JCheckBox rightClickBox = new JCheckBox("Right Click", false);
 
-	public RangeSlider slider = new RangeSlider(mainPane, 10, 130);
+	public RangeSlider slider = new RangeSlider(mainPane, 15, 130);
 
 	public boolean focused = false;
 
@@ -98,10 +98,10 @@ public class ClickerGui {
 
 		if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 			Application.getApplication().setDockIconImage(
-					new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/7Clicker.png")).getImage());
+					new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/Clicker.png")).getImage());
 		} else {
 			frame.setIconImage(
-					new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/7Clicker.png")).getImage());
+					new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/Clicker.png")).getImage());
 		}
 
 		frame.addWindowFocusListener(new WindowAdapter() {
