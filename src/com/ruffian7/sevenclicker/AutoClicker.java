@@ -1,4 +1,4 @@
-package com.ruffian7.sevenclicker;
+package com.ruffian7.rivalsclicker;
 
 import java.awt.AWTException;
 import java.awt.Point;
@@ -28,10 +28,10 @@ public class AutoClicker {
 	public static boolean skipNext = false;
 	public static boolean blockHit = false;
 
-	private static int delay = -1;
+	private static int delay = -0;
 	public static long lastTime = 0;
-	public static int minCPS = 8;
-	public static int maxCPS = 12;
+	public static int minCPS = 22;
+	public static int maxCPS = 24;
 	public static int button = 1;
 
 	public static String[] toggleKey = { "", "" };
@@ -61,7 +61,7 @@ public class AutoClicker {
 					if (System.currentTimeMillis() - lastTime >= delay) {
 						click();
 						lastTime = System.currentTimeMillis();
-						delay = random.nextInt((1000 / minCPS) - (1000 / maxCPS) + 1) + (1000 / maxCPS);
+						delay = random.nextInt((1000 / minCPS) - (1000 / maxCPS) + 2) + (1000 / maxCPS);
 					}
 				}
 			}
