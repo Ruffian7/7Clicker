@@ -38,14 +38,13 @@ import javax.swing.text.DocumentFilter;
 
 import org.pushingpixels.trident.Timeline;
 
-import com.apple.eawt.Application;
 import com.ruffian7.sevenclicker.AutoClicker;
 
 public class ClickerGui {
 
 	private final int WINDOW_WIDTH = 150;
 	private final int WINDOW_HEIGHT = 125;
-	private final int DROPDOWN_HEIGHT = 100;
+	private final int DROPDOWN_HEIGHT = 115;
 
 	private final Color LIGHT_GRAY = new Color(60, 70, 73);
 	private final Color DARK_GRAY = new Color(45, 47, 49);
@@ -75,7 +74,7 @@ public class ClickerGui {
 
 	public RangeSlider slider = new RangeSlider(mainPane, 10, 130);
 
-	public boolean focused = false;
+	public volatile boolean focused = false;
 
 	public ClickerGui() {
 		setupFrame();
@@ -97,8 +96,7 @@ public class ClickerGui {
 		frame.setResizable(false);
 
 		if (System.getProperty("os.name").toLowerCase().contains("mac")) {
-			Application.getApplication().setDockIconImage(
-					new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/7Clicker.png")).getImage());
+			setMacDockIcon();
 		} else {
 			frame.setIconImage(
 					new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/7Clicker.png")).getImage());
@@ -303,7 +301,7 @@ public class ClickerGui {
 		rightClickBox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AutoClicker.button = (rightClickBox.isSelected()) ? 2 : 1;
+				AutoClicker.setRightClickEnabled(rightClickBox.isSelected());
 			}
 		});
 
@@ -313,7 +311,7 @@ public class ClickerGui {
 		toggleKeyText.setForeground(Color.WHITE);
 		mainPane.add(toggleKeyText);
 
-		toggleKeyField.setBounds(WINDOW_WIDTH - 70, 182, 60, 20);
+		toggleKeyField.setBounds(WINDOW_WIDTH - 64, 182, 54, 20);
 		toggleKeyField.setHorizontalAlignment(SwingConstants.CENTER);
 		toggleKeyField.setBackground(DARK_GRAY);
 		toggleKeyField.setForeground(Color.WHITE);
@@ -376,6 +374,7 @@ public class ClickerGui {
 		});
 
 		mainPane.add(toggleKeyField);
+
 	}
 
 	private void setupMisc() {
@@ -409,10 +408,10 @@ public class ClickerGui {
 		JTextField textField = isMin ? minCPSField : maxCPSField;
 
 		if (textField.getText().matches("^\\d+$")
-				&& (isMin && Integer.parseInt(textField.getText()) >= 1
+				&& ((isMin && Integer.parseInt(textField.getText()) >= 1
 						&& Integer.parseInt(textField.getText()) <= AutoClicker.maxCPS)
 				|| (!isMin && Integer.parseInt(textField.getText()) >= AutoClicker.minCPS
-						&& Integer.parseInt(textField.getText()) <= 99)) {
+						&& Integer.parseInt(textField.getText()) <= 99))) {
 			int cpsFieldVal = Integer.parseInt(textField.getText());
 
 			if ((isMin && slider.sliderVal1 <= slider.sliderVal2)
@@ -439,6 +438,17 @@ public class ClickerGui {
 			slider.repaint();
 		} else {
 			textField.setText(String.valueOf(isMin ? AutoClicker.minCPS : AutoClicker.maxCPS));
+		}
+	}
+
+	private void setMacDockIcon() {
+		try {
+			Class<?> applicationClass = Class.forName("com.apple.eawt.Application");
+			Object application = applicationClass.getMethod("getApplication").invoke(null);
+			applicationClass.getMethod("setDockIconImage", java.awt.Image.class).invoke(application,
+					new ImageIcon(AutoClicker.class.getClassLoader().getResource("assets/7Clicker.png")).getImage());
+		} catch (ReflectiveOperationException e) {
+			e.printStackTrace();
 		}
 	}
 

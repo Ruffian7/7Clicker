@@ -3,8 +3,8 @@ package com.ruffian7.sevenclicker.listener;
 import java.util.Arrays;
 import java.util.List;
 
-import org.jnativehook.keyboard.NativeKeyEvent;
-import org.jnativehook.keyboard.NativeKeyListener;
+import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
+import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
 
 import com.ruffian7.sevenclicker.AutoClicker;
 
