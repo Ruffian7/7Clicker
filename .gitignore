@@ -1,0 +1,5 @@
+build/
+7Clicker-fixed/
+*.out
+*.err
+*.class
